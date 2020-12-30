@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#define ARR_SIZE 50
+
 void shift_element(int *arr, int i) {
     if (arr == NULL) {
         return;
@@ -28,12 +30,20 @@ void insertion_sort(int *arr, int len) {
 }
 
 int main() {
-    int arr[] = {5, 4, 3, 3, 1, 4, 11, 30, 1, 2, 99, 0, 3, 11, 4, 5, 1};
-    int arr_size = sizeof(arr) / sizeof(int);
-    printf("%d\n", arr_size);
-    insertion_sort(arr, arr_size);
-    for (int i = 0; i < arr_size; i++) {
-        printf("%d ,", arr[i]);
+    int arr[ARR_SIZE];
+    for (int i = 0; i < ARR_SIZE; i++) {
+        if (scanf(" %d", arr + i) != 1) {
+            char s[1000];
+            scanf("%s", s);
+            printf("Error wrong input : %s", s);
+            return 1;
+        }
+    }
+
+    insertion_sort(arr, ARR_SIZE);
+    printf("%d", *arr);
+    for (int i = 0; i < ARR_SIZE; i++) {
+        printf(",%d", *(arr + i));
     }
     printf("\n");
     return 0;

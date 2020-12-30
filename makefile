@@ -6,24 +6,35 @@ FLAGS = -Wall -g
 CC = gcc
 AR = ar
 
-PROGRAM = main
-OBJECTS_MAIN = isort
-MYOBJECTS = isort.o
+PROGRAM_1 = isort
+MYOBJECTS_1 = isort.o
 
-run: $(PROGRAM)
+PROGRAM_2 = txtfind
+MYOBJECTS_2 = txtfind.o
+
+run_s: $(PROGRAM_1)
 	./$<
-all: $(PROGRAM)
+run_f: $(PROGRAM_2)
+	./$<
 
-$(PROGRAM) : $(MYOBJECTS)
+all: $(PROGRAM_1) $(PROGRAM_2)
+
+$(PROGRAM_1) : $(MYOBJECTS_1)
 	gcc $(FLAGS) -o $@ $^
 
-%.o : %.c
+$(PROGRAM_2) : $(MYOBJECTS_2)
+	gcc $(FLAGS) -o $@ $^
+
+$(PROGRAM_1).o : $(PROGRAM_1).c
 	gcc $(FLAGS) -c $<
 
-PHONY: run, clean, all
+$(PROGRAM_2).o : $(PROGRAM_2).c
+	gcc $(FLAGS) -c $<
+
+PHONY: run_s, run_f, clean, all
 
 clean:
-	rm -f *.o *.a *.so $(PROGRAM)
+	rm -f *.o *.a *.so $(PROGRAM_1) $(PROGRAM_2)
 
 delo:
 	rm -f *.o
