@@ -10,7 +10,7 @@ PROGRAM_1 = isort
 MYOBJECTS_1 = isort.o
 
 PROGRAM_2 = txtfind
-MYOBJECTS_2 = txtfind.o
+MYOBJECTS_2 = txtfind.o myInputReader.o
 
 run_s: $(PROGRAM_1)
 	./$<
@@ -30,6 +30,9 @@ $(PROGRAM_1).o : $(PROGRAM_1).c
 
 $(PROGRAM_2).o : $(PROGRAM_2).c
 	gcc $(FLAGS) -c $<
+
+%.o : %.c myInputReader.h
+	gcc $(FLAGS) -c $< > out.txt
 
 PHONY: run_s, run_f, clean, all
 
