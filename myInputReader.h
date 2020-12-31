@@ -15,3 +15,4 @@ bool substring(char *str1, char *str2);
 bool similar(char *s, char *t, int n);
 void getLineAt(pReader reader, int line, char lineArr[LINE]);
 void getWordAt(pReader reader, int line, int index, char word[WORD]);
+void print_lines(pReader reader, int start_line, char *str);

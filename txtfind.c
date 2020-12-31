@@ -15,9 +15,13 @@ int main() {
 
     //printAll(reader);
     print_similar_words(reader, 2, "cat");
+    printf("\n");
+    print_lines(reader, 2, "cat");
 
     char word[WORD];
     getWordAt(reader, 0, 1, word);
     printf("\n%s\n", word);
+
+    printf("%s test substring of %s ? %d\n", cat, "cat", substring("cat", cat));
     return 0;
 }

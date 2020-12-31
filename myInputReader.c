@@ -1,6 +1,7 @@
 #include "myInputReader.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int readNextLine(pReader reader);
 
@@ -85,6 +86,9 @@ int getNextWord(char line[LINE], char word[WORD]) {
  * */
 bool startTheSame(char *str1, char *str2) {
     while (*str1 == *str2) {
+        if (*str1 == 0) {
+            return true;
+        }
         str1++;
         str2++;
     }
@@ -94,6 +98,9 @@ bool startTheSame(char *str1, char *str2) {
     return false;
 }
 
+/**
+ * @returns 1 if str2 is substring of str1
+ * */
 bool substring(char *str1, char *str2) {
     if (str1 == str2) {
         return true;
@@ -101,7 +108,6 @@ bool substring(char *str1, char *str2) {
     if (str1 == NULL || str2 == NULL) {
         return false;
     }
-
     while (*str1 != 0) {
         if (startTheSame(str1, str2)) {
             return true;
@@ -113,7 +119,7 @@ bool substring(char *str1, char *str2) {
 
 bool similar(char *str1, char *str2, int n) {
     while (*str1 == *str2) {
-        if (*str1 == 0 && *str2 == 0) {
+        if (*str1 == 0) {
             return true;
         }
         str1++;
@@ -153,7 +159,19 @@ void getWordAt(pReader reader, int line, int index, char word[WORD]) {
     word = "";
 }
 
-void print_lines(char *str) {
+void print_lines(pReader reader, int start_line, char *target) {
+    for (int i = start_line; i < reader->size; i++) {
+        char word[WORD];
+        int start = 0;
+        int size = 0;
+        while ((size = getNextWord(reader->input[i] + start, word)) != EOF) {
+            start += size;
+            if (substring(word, target)) {
+                printf("%s", reader->input[i]);
+                break;
+            }
+        }
+    }
 }
 
 void print_similar_words(pReader reader, int start_line, char *target) {

@@ -37,7 +37,7 @@ $(PROGRAM_2).o : $(PROGRAM_2).c
 PHONY: run_s, run_f, clean, all
 
 clean:
-	rm -f *.o *.a *.so $(PROGRAM_1) $(PROGRAM_2)
+	rm -f *.o *.a *.so $(PROGRAM_1) $(PROGRAM_2) *.exe
 
 delo:
-	rm -f *.o
+	rm -f *.o *.exe
