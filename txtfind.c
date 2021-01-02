@@ -9,10 +9,13 @@ int main() {
     char symbol[WORD];
     getWordAt(reader, 0, 1, symbol);
 
-    printf("\n%s : %s\n", word, symbol);
+    if (symbol[0] == 'a') {
+        print_lines(reader, 2, word);
+    } else if (symbol[0] == 'b') {
+        print_similar_words(reader, 2, word);
+    } else {
+        printf("ERROR : wrong input cannot the second word should be either the symbol a or b");
+    }
 
-    print_similar_words(reader, 2, word);
-    printf("\n");
-    print_lines(reader, 2, word);
     return 0;
 }

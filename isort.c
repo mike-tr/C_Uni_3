@@ -35,7 +35,7 @@ int main() {
         if (scanf(" %d", arr + i) != 1) {
             char s[1000];
             scanf("%s", s);
-            printf("Error wrong input : %s", s);
+            printf("Error wrong input %d : %s", i, s);
             return 1;
         }
     }
